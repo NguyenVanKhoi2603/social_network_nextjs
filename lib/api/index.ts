@@ -1,0 +1,1 @@
+export * as PostGatewayAPI from './post/api'
