@@ -1,11 +1,11 @@
-import { ITest } from "../../../types/common"
+import { IGateWayResponse } from "../../../types/common"
+import { IPost } from "../../../types/post"
 import { get } from "../common"
 
-
-const test = () => {
+const posts = () => {
   return {
-    get: async (params?: Record<string, any>,) => await get<ITest[]>(`/api/post/test`, params)
+    get: async (params?: Record<string, any>,) => await get<IGateWayResponse<IPost[]>>(`/api/post/posts`, params)
   }
 }
 
-export { test }
+export { posts }

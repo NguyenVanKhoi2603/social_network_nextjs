@@ -1,12 +1,12 @@
 import axios, { ResponseType } from 'axios'
 
-const baseURL = process.env.API_URL || 'http://localhost:3000'
+const baseURL = process.env.API_URL || 'https://dummyapi.io/data/v1'
 // const baseURL = process.env.API_URL || 'https://test-nextix-gateway-api.rocket.nexpando.com'
-const accessToken = process.env.API_ACCESS_TOKEN || ''
+const app_id = process.env.APP_ID || '62160254d32992820c08cd2e'
 
 if (!baseURL) throw new Error('API_URL not defined!')
 
-const headers = { 'Content-Type': 'application/json; charset=UTF-8', Authorization: `Bearer ${accessToken}` }
+const headers = { 'Content-Type': 'application/json; charset=UTF-8' }
 
 const client = axios.create({
   baseURL,
@@ -20,7 +20,7 @@ const get = async <T>(
   responseType: ResponseType = 'json'
 ): Promise<T> => {
   try {
-    headers['app-id'] = `${process.env.APP_ID}`
+    headers['app-id'] = app_id
     const resp = await client.get<T>(path, { params, headers, responseType })
     return resp.data
   } catch (error: any) {
