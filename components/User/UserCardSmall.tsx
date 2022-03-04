@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { get } from 'lodash';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -40,7 +41,7 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
   border: `2px solid ${theme.palette.background.paper}`,
 }));
 
-const UserCardSmall: FC<{ user?: IUser }> = ({ user }) => {
+const UserCardSmall: FC<{ user?: IUser }> = ({ user = {} }) => {
   return (
     <Stack direction="row" spacing={2} className="item-user-card-small cursor-pointer">
       <StyledBadge
@@ -48,9 +49,9 @@ const UserCardSmall: FC<{ user?: IUser }> = ({ user }) => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         variant="dot"
       >
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        <Avatar alt="Remy Sharp" src={get(user, "picture")} />
       </StyledBadge>
-      <div className="d-flex align-i-center font-weight-500">Khoi ne</div>
+      <div className="d-flex align-i-center font-weight-500">{get(user, "firstName")}</div>
     </Stack>
   )
 }
